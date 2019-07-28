@@ -82,7 +82,7 @@ class Category extends Database
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $row;
+            return $row ? self::load($row) : null;
         }else{
             database::openConnection();
             $stmt = self::$connection->prepare(self::GET_ALL_CAT);

@@ -11,5 +11,11 @@
   ],
   "require": {
     "phpunit/phpunit": "8.2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "tests\\": "tests",
+      "app\\": "app"
+    }
   }
 }

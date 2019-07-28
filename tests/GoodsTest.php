@@ -21,12 +21,14 @@ class GoodsTest extends TestCase
         $Goods->setDesc('i dont know');
         $Goods->setDateCreate(date('Y-m-d H:i:s'));
         $id=$Goods->save();
-        $this->assertEquals(1, $id);
+        $this->assertEquals(2, $id);
     }
 
-    public function testGetAllGoods()
+    public function testGetGoods()
     {
-        $this->assertTrue(true);
+        $Goods = Goods::GetGoods(1);
+        $this->assertEquals('Table', $Goods['name']);
+
     }
 
     public function testDeleteGood()

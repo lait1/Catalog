@@ -110,13 +110,23 @@ class Goods extends Database
     }
 
 
-    public static function GetAllGoods()
+    public static function GetGoods($id)
     {
-        database::openConnection();
-        $stmt = self::$connection->prepare(self::GET_ALL_GOODS);
-        $stmt->execute();
-        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $row;
+        if(isset($id)) {
+            database::openConnection();
+            $stmt = self::$connection->prepare(self::GET_GOOD);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $row ? self::load($row) : null;
+        }else{
+            database::openConnection();
+            $stmt = self::$connection->prepare(self::GET_ALL_GOODS);
+            $stmt->execute();
+            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $row;
+        }
+
     }
 
 
