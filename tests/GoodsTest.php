@@ -16,28 +16,20 @@ class GoodsTest extends TestCase
     public function testSave()
     {
         $Goods = new Goods;
-        $Goods->setName('Probka');
-        $Goods->setAmount(4);
+        $Goods->setName('Probka3');
+        $Goods->setAmount(3);
         $Goods->setDesc('i dont know');
         $Goods->setDateCreate(date('Y-m-d H:i:s'));
         $id=$Goods->save();
-        $this->assertEquals(2, $id);
+        $this->assertEquals(3, $id);
     }
 
     public function testGetGoods()
     {
         $Goods = Goods::GetGoods(1);
-        $this->assertEquals('Table', $Goods['name']);
+        $this->assertEquals('Probka', $Goods['name']);
 
     }
 
-    public function testDeleteGood()
-    {
-        $this->assertTrue(true);
-    }
 
-    public function testInsertCatProduct()
-    {
-        $this->assertTrue(true);
-    }
 }

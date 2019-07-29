@@ -17,8 +17,8 @@ class Category extends Database
     const FIND_CAT_BY_ID ="SELECT * FROM categories WHERE id=:id";
     const GET_ALL_CAT ="SELECT * FROM categories";
 
-    const INSERT_CAT ='INSERT INTO categories(name, desc) value(:name, :desc)';
-    const UPDATE_CAT ='UPDATE categories SET name=:name, desc=:desc WHERE id=:id';
+    const INSERT_CAT ='INSERT INTO categories(name, description) value(:name, :desc)';
+    const UPDATE_CAT ='UPDATE categories SET name=:name, description=:desc WHERE id=:id';
     const DELETE_CAT ='DELETE FROM categories WHERE id=:id';
 
 
@@ -109,6 +109,7 @@ class Category extends Database
             $stmt->bindParam(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindParam(':desc', $this->desc, PDO::PARAM_STR);
             $stmt->execute();
+            return $this->id;
         }
     }
 

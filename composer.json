@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "phpunit/phpunit": "8.2.5"
+    "phpunit/phpunit": "^6"
   },
   "autoload": {
     "psr-4": {

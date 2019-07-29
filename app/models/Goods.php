@@ -18,13 +18,13 @@ class Goods extends Database
     const GET_GOOD = "SELECT * FROM goods WHERE id=:id";
 
     const INSERT_CAT_PRODUCT = "INSERT INTO product_category(ID_category, ID_good) value (:ID_category, :ID_good)";
-    const INSERT_GOOD = "INSERT INTO goods(name, desc, amount, date_create) value (:name, :desc, :amount, :date_create)";
-    const UPDATE_GOOD = "UPDATE goods SET name=:name, desc=:desc, amount=:amount, date_create=:date_create WHERE id=:id";
+    const INSERT_GOOD = "INSERT INTO goods(name, description, amount, date_create) value (:name, :desc, :amount, :date_create)";
+    const UPDATE_GOOD = "UPDATE goods SET name=:name, description=:desc, amount=:amount, date_create=:date_create WHERE id=:id";
     const DELETE_GOOD = "DELETE FROM goods WHERE id=:id";
 
     protected $id;
     protected $name;
-    protected $desc;
+    protected $description;
     protected $amount;
     protected $date_create;
     protected $category;
@@ -66,7 +66,7 @@ class Goods extends Database
      */
     public function getDesc()
     {
-        return $this->desc;
+        return $this->description;
     }
 
     /**
@@ -74,7 +74,7 @@ class Goods extends Database
      */
     public function setDesc($desc)
     {
-        $this->desc = $desc;
+        $this->description = $desc;
     }
 
     /**
@@ -110,6 +110,7 @@ class Goods extends Database
     }
 
 
+
     public static function GetGoods($id)
     {
         if(isset($id)) {
@@ -133,11 +134,11 @@ class Goods extends Database
     public function save()
     {
         database::openConnection();
-        If(empty($this->id))
+        If(!isset($this->id))
         {
          $stmt = self::$connection->prepare(self::INSERT_GOOD);
          $stmt->bindParam(':name', $this->name, PDO::PARAM_STR);
-         $stmt->bindParam(':desc', $this->desc, PDO::PARAM_STR);
+         $stmt->bindParam(':desc', $this->description, PDO::PARAM_STR);
          $stmt->bindParam(':amount', $this->amount, PDO::PARAM_INT);
          $stmt->bindParam(':date_create', $this->date_create, PDO::PARAM_INT);
          $stmt->execute();
@@ -147,10 +148,11 @@ class Goods extends Database
          $stmt = self::$connection->prepare(self::UPDATE_GOOD);
          $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
          $stmt->bindParam(':name', $this->name, PDO::PARAM_STR);
-         $stmt->bindParam(':desc', $this->desc, PDO::PARAM_STR);
+         $stmt->bindParam(':desc', $this->description, PDO::PARAM_STR);
          $stmt->bindParam(':amount', $this->amount, PDO::PARAM_INT);
          $stmt->bindParam(':date_create', $this->date_create, PDO::PARAM_INT);
          $stmt->execute();
+         return $this->id;
         }
     }
     public function insertCatProduct($category){
@@ -159,12 +161,13 @@ class Goods extends Database
         $stmt->bindParam('ID_category', $category, PDO::PARAM_INT);
         $stmt->bindParam('ID_good', $this->id, PDO::PARAM_INT);
         $stmt->execute();
+
     }
-    public function deleteGood()
+    public static function deleteGood($id)
     {
         database::openConnection();
         $stmt = self::$connection->prepare(self::DELETE_GOOD);
-        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
 
