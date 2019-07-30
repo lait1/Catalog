@@ -16,6 +16,16 @@ class Goods extends Database
 {
     const GET_ALL_GOODS = "SELECT * FROM goods";
     const GET_GOOD = "SELECT * FROM goods WHERE id=:id";
+    const GET_GOODS_BY_CAT = "select goods.ID as ID_goods, goods.name as goods_name, amount, date_create, goods.description as goods_desc, categories.ID as ID_cat, categories.name as cat_name
+                from product_categories
+                left join goods on goods.ID=ID_good
+                left join categories on categories.ID=ID_category
+                where categories.ID=:id";
+    const GET_CAT_BY_GOODS = "select categories.ID as ID_cat, categories.name as cat_name
+                from product_categories
+                left join goods on goods.ID=ID_good
+                left join categories on categories.ID=ID_category
+                where goods.ID=:id";
 
     const INSERT_CAT_PRODUCT = "INSERT INTO product_category(ID_category, ID_good) value (:ID_category, :ID_good)";
     const INSERT_GOOD = "INSERT INTO goods(name, description, amount, date_create) value (:name, :desc, :amount, :date_create)";
@@ -111,9 +121,9 @@ class Goods extends Database
 
 
 
-    public static function GetGoods($id)
+    public static function GetGoods($id=0)
     {
-        if(isset($id)) {
+        if($id > 0) {
             database::openConnection();
             $stmt = self::$connection->prepare(self::GET_GOOD);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -129,7 +139,24 @@ class Goods extends Database
         }
 
     }
-
+    public static function GetGoodsByCat($id)
+    {
+        database::openConnection();
+        $stmt = self::$connection->prepare(self::GET_GOODS_BY_CAT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    public static function GetCatByGoods($id)
+    {
+        database::openConnection();
+        $stmt = self::$connection->prepare(self::GET_CAT_BY_GOODS);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
 
     public function save()
     {

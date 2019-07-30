@@ -1,3 +1,5 @@
+<?php var_dump($data);
+?>
 <h1>Тыгы-дык</h1>
 <form id="login" class="main_form" >
     <label for="login">Имя пользователя</label><br>
@@ -29,4 +31,9 @@
         <input type="number" name="amount" ><br>
     <button class="form__button-goods" type="button" >add</button>
 </form>
-<div id="content"></div>
+<div id="content">
+
+
+</div>
+
+

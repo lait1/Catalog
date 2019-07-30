@@ -9,12 +9,21 @@
 namespace app\controllers;
 
 
+use app\models\Category;
+use app\models\Goods;
+
 class Main extends Controller
 {
 
     public function action_index($options)
     {
-
-        $this->view->generate('main.php');
+        $data['goods'] = Goods::GetGoods();
+        $data['cat'] = Category::getCategory();
+        $i=0;
+        foreach ($data['goods'] as $dataID){
+            $data['goods'][$i]['cats']=Goods::GetCatByGoods($dataID['ID']);
+            $i++;
+        }
+        $this->view->generate('main.php', $data);
     }
 }

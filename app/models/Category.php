@@ -74,9 +74,9 @@ class Category extends Database
         $this->desc = $desc;
     }
 
-    public static function getCategory($id)
+    public static function getCategory($id=0)
     {
-        if(isset($id)) {
+        if($id > 0) {
             database::openConnection();
             $stmt = self::$connection->prepare(self::FIND_CAT_BY_ID);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
