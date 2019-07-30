@@ -1,32 +1,32 @@
 <h1>Тыгы-дык</h1>
-<form class="main_form" method="post" action="login">
+<form id="login" class="main_form" >
     <label for="login">Имя пользователя</label><br>
     <input type="text" name="login" id="login" required><Br>
 
     <label for="password">Пароль</label><br>
     <input type="password" name="password" id="password" required><Br>
 
-    <input type=submit value=Выбрать name="submit">
+    <input class="form__button-login" type=submit value=Выбрать name="submit">
 </form>
 <br>
-<form class="add_category" method="post" action="add/category">
+<form name="category" id="add_category" >
     <label for="category">Category</label><br>
-    <input type="text" name="category" id="category" required><Br>
+        <input type="text" name="name_category" id="category" required><Br>
 
     <label for="desc">Описание</label><br>
-    <textarea name="desc" id="password"></textarea><br>
+        <textarea name="desc" id="desc"></textarea><br>
 
-    <input type=submit value=Add name="submit">
+    <button class="form__button-catalog" type="button" >add</button>
 </form>
 <br>
-<form class="add_goods" method="post" action="add/good">
+<form name="goods"  id="add_goods" >
     <label for="good">Good</label><br>
-    <input type="text" name="good" id="good" required><Br>
+        <input type="text" name="name_goods" id="good" required><Br>
 
     <label for="desc">Описание</label><br>
-    <textarea  name="desc" id="password"></textarea><br>
+        <textarea  name="desc" ></textarea><br>
     <label for="amount">Кол-во</label><br>
-    <input type="number" name="amount" ><br>
-    <input type=submit value=Add name="submit">
+        <input type="number" name="amount" ><br>
+    <button class="form__button-goods" type="button" >add</button>
 </form>
 <div id="content"></div>

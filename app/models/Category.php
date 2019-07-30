@@ -99,7 +99,6 @@ class Category extends Database
             $stmt = self::$connection->prepare(self::INSERT_CAT);
             $stmt->bindParam(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindParam(':desc', $this->desc, PDO::PARAM_STR);
-            $stmt->bindParam(':date_create', $this->date_create, PDO::PARAM_INT);
             $stmt->execute();
             return $this->id = self::$connection->lastInsertId();
         }
