@@ -46,3 +46,26 @@ document.getElementsByClassName('form__button-goods')[0].onclick = function() {
         // alert( xhr.responseText ); // responseText -- текст ответа.
     }
 };
+document.getElementsByClassName('form__button-reg')[0].onclick = function() {
+
+    var xhr = new XMLHttpRequest();
+
+    var message = new FormData(document.forms.registr);
+
+    xhr.open('POST', 'http://catalog.local/add/user', false);
+    xhr.send(message);
+
+
+    if (xhr.status != 200) {
+        // обработать ошибку
+        alert( xhr.status + ': ' + xhr.statusText );
+    } else {
+        // вывести результат
+        //Вызывался popup с ответом.
+        document.forms.goods.reset();
+        var messageElem = document.createElement('div');
+        messageElem.appendChild(document.createTextNode(xhr.responseText));
+        document.getElementById('registration').appendChild(messageElem);
+        // alert( xhr.responseText ); // responseText -- текст ответа.
+    }
+};

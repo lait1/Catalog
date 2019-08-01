@@ -15,6 +15,7 @@ class Main extends Controller
     public function action_index($options)
     {
 
+
         $this->view->generate('main.php');
     }
 }
