@@ -165,15 +165,15 @@ class User extends Database
     }
 
     public static function AccessCheck(){
-        if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) {
-            $id_user = intval($_COOKIE['id']);
-            $userData = self::findByID($id_user);
-            if (($userData['user_hash'] !== $_COOKIE['hash']) or ($userData['id_user'] !== $_COOKIE['id'])) {
-                return false;
-            } else {
-                return $userData;
-            }
+        $user = self::findByHash(session_id());
+        if (empty($user)){
+            return false;
+        }else{
+            $_SESSION['auth']=true;
+            $_SESSION['user_id']= $user['user_id'];
+            return true;
         }
+
     }
 
 

@@ -1,14 +1,14 @@
 <?php var_dump($data);
 ?>
 <h1>Тыгы-дык</h1>
-<form id="login" class="main_form" >
+<form name="login" id="login" method="post" action="login" >
     <label for="login">Имя пользователя</label><br>
     <input type="text" name="login" id="login" required><Br>
 
     <label for="password">Пароль</label><br>
     <input type="password" name="password" id="password" required><Br>
 
-    <button class="form__button-login" type="button" >add</button>
+    <button class="form__button-login" type="submit" >add</button>
 </form>
 <br>
 <form name="registr" id="registration"  >
@@ -44,4 +44,5 @@
         <input type="number" name="amount" ><br>
     <button class="form__button-goods" type="button" >add</button>
 </form>
+<button class="cancel" type="button" >Exit</button>
 <div id="content"></div>

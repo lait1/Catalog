@@ -22,7 +22,10 @@ class AddTest extends TestCase
         $add = new Add;
         $category->setName($add->test_input($_POST['name_category']));
         $category->setDesc($add->test_input($_POST['desc']));
-        $this->assertEquals('Cartoon', $category->getName());
-        $this->assertEquals('description', $category->getDesc());
+        $res = $category->save();
+        $data = $category::getCategory($res);
+
+        $this->assertEquals('Cartoon', $data['name']);
+        $this->assertEquals('description', $data['description']);
     }
 }

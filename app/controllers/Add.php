@@ -49,7 +49,7 @@ class Add extends Controller
         if($res>0){
             echo json_encode('Category add');
         }else{
-            echo json_encode('Add category failed');
+            echo json_encode('category failed');
 //            throw new \Exception('error create category');
 //            exception('error create category')
         }
@@ -66,7 +66,7 @@ class Add extends Controller
             echo json_encode('Goods add');
         }else{
 //            exception('error create goods')
-            echo json_encode('Add goods failed');
+            echo json_encode('goods failed');
 
         }
     }

@@ -10,6 +10,7 @@ namespace app;
 
 
 use app\controllers\Add;
+use app\controllers\Login;
 use app\controllers\Main;
 
 class Route
@@ -22,6 +23,7 @@ class Route
         $routes = [
             '/' => Main::class,
             'add'=> Add::class,
+            'login'=>Login::class
 
         ];
 

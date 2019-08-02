@@ -16,6 +16,7 @@ class GoodsTest extends TestCase
     public function testSave()
     {
         $Goods = new Goods;
+        $Goods->setId(1);
         $Goods->setName('Probka3');
         $Goods->setAmount(3);
         $Goods->setDesc('i dont know');
